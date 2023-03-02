@@ -45,6 +45,14 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+body{
+	background-color: #FB6B6B;
+}
+
+*{
+	box-sizing: border-box;
+}
 `;
 
 export default GlobalStyle;

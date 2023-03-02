@@ -1,9 +1,14 @@
-import styled from "styled-components";
+import Deck from "./components/Deck";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+
 
 export default function App() {
   return (
-    <div className="App">
-
+    <div>
+      <Header />
+      <Deck />
+      <Footer />
     </div>
   );
 }
