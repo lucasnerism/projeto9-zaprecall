@@ -9,13 +9,14 @@ import imgalmost from "../assets/images/icone_quase.png";
 export default function Flashcards({ numero, question, answer }) {
   const [estado, setEstado] = React.useState("fechado");
   const [imgFinal, setImgFinal] = React.useState();
+  const [color, setColor] = React.useState();
 
   if (estado === "fechado") {
     return (
       <Cards fechado data-test="flashcard">
         <ContainerCard>
           <Texto fechado data-test="flashcard-text">Pergunta {numero}</Texto>
-          <Img src={imgplay} onClick={() => setEstado("aberto")} />
+          <Img data-test="play-btn" src={imgplay} onClick={() => setEstado("aberto")} />
         </ContainerCard>
       </Cards>
     );
@@ -23,7 +24,7 @@ export default function Flashcards({ numero, question, answer }) {
     return (
       <Cards aberto data-test="flashcard">
         <Texto aberto data-test="flashcard-text">{question}</Texto>
-        <Img aberto src={imgturn} alt={"virar"} onClick={() => setEstado("virado")} />
+        <Img data-test="turn-btn" aberto src={imgturn} alt={"virar"} onClick={() => setEstado("virado")} />
       </Cards>
     );
   } else if (estado === "virado") {
@@ -31,9 +32,9 @@ export default function Flashcards({ numero, question, answer }) {
       <Cards virado data-test="flashcard">
         <Texto virado data-test="flashcard-text">{answer}</Texto>
         <Container>
-          <Button virado color="#FF3030" data-test="no-btn" onClick={() => { setEstado("finalizado"); setImgFinal(imgwrong); }}> Não lembrei</Button>
-          <Button virado color="#FF922E" data-test="partial-btn" onClick={() => { setEstado("finalizado"); setImgFinal(imgalmost); }}> Quase não lembrei</Button>
-          <Button virado color="#2FBE34" data-test="zap-btn" onClick={() => { setEstado("finalizado"); setImgFinal(imgright); }}> Zap!</Button >
+          <Button virado color="#FF3030" data-test="no-btn" onClick={() => { setEstado("finalizado"); setImgFinal(imgwrong); setColor("#FF3030"); }}> Não lembrei</Button>
+          <Button virado color="#FF922E" data-test="partial-btn" onClick={() => { setEstado("finalizado"); setImgFinal(imgalmost); setColor("#FF922E"); }}> Quase não lembrei</Button>
+          <Button virado color="#2FBE34" data-test="zap-btn" onClick={() => { setEstado("finalizado"); setImgFinal(imgright); setColor("#2FBE34"); }}> Zap!</Button >
         </Container >
       </Cards >
     );
@@ -41,7 +42,7 @@ export default function Flashcards({ numero, question, answer }) {
     return (
       <Cards finalizado data-test="flashcard">
         <ContainerCard>
-          <Texto finalizado resultado={imgFinal} data-test="flashcard-text">Pergunta {numero}</Texto>
+          <Texto finalizado color={color} resultado={imgFinal} data-test="flashcard-text">Pergunta {numero}</Texto>
           <Img src={imgFinal} />
         </ContainerCard>
       </Cards>
@@ -74,16 +75,9 @@ const Texto = styled.h1`
   font-size: ${props => (props.aberto || props.virado) ? "18px" : "16px"};
   font-weight: ${props => (props.aberto || props.virado) ? "400" : "700"};
   width: ${props => (props.aberto || props.virado) ? "250" : "auto"};
-  color: #333333;
-  ${props => {
-    if (props.resultado === "imgright") {
-      return `
-      color: #2FBE34;
-      text-decoration-line: line-through;
-    `;
-    }
-  }
-  }
+  color:  ${props => props.color ? `${props.color};` : "#333333;"}
+  ${props => props.finalizado ? "text-decoration-line: line-through;" : ""}
+  
 `;
 
 const Container = styled.div`
