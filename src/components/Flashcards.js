@@ -83,7 +83,7 @@ export default function Flashcards({ numero, question, answer, finished, setFini
 
 const Cards = styled.li`
   width: 300px;
-  min-height: ${props => (props.aberto || props.virado) ? "131px" : "65px"};
+  min-height: ${props => (props.aberto || props.virado) ? "151px" : "65px"};
   margin-left: auto;
   margin-right: auto;
   background-color: ${props => (props.aberto || props.virado) ? "#FFFFD4" : "#FFFFFF"};

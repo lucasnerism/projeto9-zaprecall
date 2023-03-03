@@ -24,7 +24,7 @@ export default function Deck(props) {
 
 
 const Container = styled.ul`
-  margin-bottom: 70px;
+  margin-bottom: 175px;
 
   li{
     margin-bottom: 25px;

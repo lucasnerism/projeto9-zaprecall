@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import logo from "../assets/images/logo.png";
 
-export default function Welcome(props) {
+export default function Welcome() {
   const [initiate, setInitiate] = React.useState(false);
 
   return (

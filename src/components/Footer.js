@@ -22,7 +22,7 @@ export default function Footer(props) {
 const Container = styled.div`
   width: 100%;
   height: ${props => props.deckended ? "171px" : "70px"};
-  background-color: #FFFFFF;
+  background-color: #FFFFFF;  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
