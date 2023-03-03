@@ -8,9 +8,9 @@ export default function Footer(props) {
   const images = props.images;
 
   return (
-    <Container data-test="footer" deckended={props.finished == props.maxQuestions ? true : false} >
+    <Container data-test="footer" deckended={props.finished === props.maxQuestions ? true : false} >
 
-      {props.finished == props.maxQuestions ? (props.images.some(el => el.image === imgwrong) ? <SadEnd /> : <PartyEnd />) : ""}
+      {props.finished === props.maxQuestions ? (props.images.some(el => el.image === imgwrong) ? <SadEnd /> : <PartyEnd />) : ""}
       <h1>{props.finished}/{props.maxQuestions} CONCLUÍDOS</h1>
       <div>
         {images.map((i, index) => (<Img src={i.image} alt={i.test} datatest={i.test} key={index} />))}
