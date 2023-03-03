@@ -6,10 +6,11 @@ import imgright from "../assets/images/icone_certo.png";
 import imgwrong from "../assets/images/icone_erro.png";
 import imgalmost from "../assets/images/icone_quase.png";
 
-export default function Flashcards({ numero, question, answer }) {
+export default function Flashcards({ numero, question, answer, finished, setFinished }) {
   const [estado, setEstado] = React.useState("fechado");
   const [imgFinal, setImgFinal] = React.useState();
   const [color, setColor] = React.useState();
+  const [test, setTest] = React.useState();
 
   if (estado === "fechado") {
     return (
@@ -32,9 +33,33 @@ export default function Flashcards({ numero, question, answer }) {
       <Cards virado data-test="flashcard">
         <Texto virado data-test="flashcard-text">{answer}</Texto>
         <Container>
-          <Button virado color="#FF3030" data-test="no-btn" onClick={() => { setEstado("finalizado"); setImgFinal(imgwrong); setColor("#FF3030"); }}> Não lembrei</Button>
-          <Button virado color="#FF922E" data-test="partial-btn" onClick={() => { setEstado("finalizado"); setImgFinal(imgalmost); setColor("#FF922E"); }}> Quase não lembrei</Button>
-          <Button virado color="#2FBE34" data-test="zap-btn" onClick={() => { setEstado("finalizado"); setImgFinal(imgright); setColor("#2FBE34"); }}> Zap!</Button >
+          <Button virado color="#FF3030" data-test="no-btn" onClick={() => {
+            setEstado("finalizado");
+            setImgFinal(imgwrong);
+            setColor("#FF3030");
+            setTest("no-icon");
+            let aux = finished;
+            aux++;
+            setFinished(aux);
+          }}> Não lembrei</Button>
+          <Button virado color="#FF922E" data-test="partial-btn" onClick={() => {
+            setEstado("finalizado");
+            setImgFinal(imgalmost);
+            setColor("#FF922E");
+            setTest("partial-icon");
+            let aux = finished;
+            aux++;
+            setFinished(aux);
+          }}> Quase não lembrei</Button>
+          <Button virado color="#2FBE34" data-test="zap-btn" onClick={() => {
+            setEstado("finalizado");
+            setImgFinal(imgright);
+            setColor("#2FBE34");
+            setTest("zap-icon");
+            let aux = finished;
+            aux++;
+            setFinished(aux);
+          }}> Zap!</Button >
         </Container >
       </Cards >
     );
@@ -43,7 +68,7 @@ export default function Flashcards({ numero, question, answer }) {
       <Cards finalizado data-test="flashcard">
         <ContainerCard>
           <Texto finalizado color={color} resultado={imgFinal} data-test="flashcard-text">Pergunta {numero}</Texto>
-          <Img src={imgFinal} />
+          <Img src={imgFinal} data-test={test} />
         </ContainerCard>
       </Cards>
     );

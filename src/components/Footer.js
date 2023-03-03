@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export default function Footer() {
+export default function Footer(props) {
   return (
     <Container data-test="footer">
-      <h1>0/4 CONCLUÍDOS</h1>
+      <h1>{props.finished}/{props.maxQuestions} CONCLUÍDOS</h1>
     </Container>
   );
 }
