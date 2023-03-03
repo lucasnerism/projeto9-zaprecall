@@ -6,7 +6,7 @@ import imgright from "../assets/images/icone_certo.png";
 import imgwrong from "../assets/images/icone_erro.png";
 import imgalmost from "../assets/images/icone_quase.png";
 
-export default function Flashcards({ numero, question, answer, finished, setFinished }) {
+export default function Flashcards({ numero, question, answer, finished, setFinished, images, setImages }) {
   const [estado, setEstado] = React.useState("fechado");
   const [imgFinal, setImgFinal] = React.useState();
   const [color, setColor] = React.useState();
@@ -41,6 +41,8 @@ export default function Flashcards({ numero, question, answer, finished, setFini
             let aux = finished;
             aux++;
             setFinished(aux);
+            const obj = { image: imgwrong, test: "no-icon" };
+            setImages([...images, obj]);
           }}> Não lembrei</Button>
           <Button virado color="#FF922E" data-test="partial-btn" onClick={() => {
             setEstado("finalizado");
@@ -50,6 +52,8 @@ export default function Flashcards({ numero, question, answer, finished, setFini
             let aux = finished;
             aux++;
             setFinished(aux);
+            const obj = { image: imgalmost, test: "partial-icon" };
+            setImages([...images, obj]);
           }}> Quase não lembrei</Button>
           <Button virado color="#2FBE34" data-test="zap-btn" onClick={() => {
             setEstado("finalizado");
@@ -59,6 +63,8 @@ export default function Flashcards({ numero, question, answer, finished, setFini
             let aux = finished;
             aux++;
             setFinished(aux);
+            const obj = { image: imgright, test: "zap-icon" };
+            setImages([...images, obj]);
           }}> Zap!</Button >
         </Container >
       </Cards >
@@ -136,11 +142,4 @@ const Img = styled.img`
         bottom: 6px;
         right: 15px;
     `}
-`;
-
-const ImgTurn = styled.img`
-  height: 20px;
-  position: absolute;
-  bottom: 6px;
-  right: 15px;
 `;

@@ -6,7 +6,6 @@ export default function Deck(props) {
 
   return (
     <Container>
-      {() => props.setMaxQuestions(cards.length)}
       {cards.map((c, index) => (<Flashcards
         key={index}
         question={c.question}
@@ -14,6 +13,8 @@ export default function Deck(props) {
         numero={index + 1}
         finished={props.finished}
         setFinished={props.setFinished}
+        images={props.images}
+        setImages={props.setImages}
       />))}
     </Container>
   );
